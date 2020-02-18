@@ -43,7 +43,7 @@ kotlin {
 }
 
 gitPublish {
-    repoUri.set("git@github.com:SalomonBrys/KC2019-Pres.git")
+    repoUri.set("git@github.com:romainbsl/deck-advanced-di-on-mpp.git")
     branch.set("gh-pages")
 
     contents {

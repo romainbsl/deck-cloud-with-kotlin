@@ -8,6 +8,9 @@ import styled.injectGlobal
 import ws.kpres.Move
 import ws.kpres.presentation
 import ws.slides.*
+import ws.utils.Background
+import ws.utils.LCTPicon
+import ws.utils.Palette
 import kotlin.browser.document
 
 
@@ -15,19 +18,14 @@ fun CSSBuilder.globalCSS() {
     body {
 //        backgroundImage = Image("linear-gradient(to bottom right, #E8441F, #921F81)")
         backgroundColor = Color.silver
-        fontFamily = "Picon"
+        fontFamily = LCTPicon.Picon
         color = Color.white
         margin(0.em)
         padding(0.em)
 
         div {
             +"pres-container" {
-                backgroundImage = Image("linear-gradient(to bottom right, #E8441F, #921F81)")
-            }
-
-            +"inner-container" {
-                backgroundColor = Color("rgba(0, 0, 0, 0.8)")
-                transition(::background, 500.ms)
+                backgroundImage = Background.kodeinDarker
             }
         }
     }
@@ -35,14 +33,13 @@ fun CSSBuilder.globalCSS() {
     pre {
         +"code" {
             textAlign = TextAlign.left
-            backgroundColor = Color("#2b2b2b")
+            backgroundColor = Color("#FFFFFF")
             alignSelf = Align.stretch
             margin(0.em, 2.em)
             padding(0.5.em)
             borderRadius = 0.2.em
-            boxShadow(Color.black, blurRadius = 0.5.em)
             code {
-                fontFamily = "fira code"
+                fontFamily = "JetBrains Mono"
                 fontSize = 0.65.em
                 lineHeight = LineHeight("1.2")
             }
@@ -67,31 +64,31 @@ fun main() {
             intro()
             kodeinKoders()
             kodeinFramework()
-            noSQL()
-            SQLite()
+//            noSQL()
+//            SQLite()
             simpleUsage()
-            opinion()
-            kodeinDB()
-            layers()
-            contractImmut()
-            immutability()
-            open()
-            path()
-            mppModel()
-            query()
-            composite()
-            contractId()
-            batchAndSnapshot()
-            reactive()
-            reactiveLocal()
-            reactiveGlobal()
-            reactiveContext()
-            people()
-            polymorphism()
-            mppPolymorphism()
-            migration()
-            release()
-            next()
+//            opinion()
+//            kodeinDB()
+//            layers()
+//            contractImmut()
+//            immutability()
+//            open()
+//            path()
+//            mppModel()
+//            query()
+//            composite()
+//            contractId()
+//            batchAndSnapshot()
+//            reactive()
+//            reactiveLocal()
+//            reactiveGlobal()
+//            reactiveContext()
+//            people()
+//            polymorphism()
+//            mppPolymorphism()
+//            migration()
+//            release()
+//            next()
             thanks()
         }
     }
