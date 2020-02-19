@@ -1,6 +1,10 @@
 package ws.kpres
 
+import kotlinx.css.CSSBuilder
 import kotlinx.css.RuleSet
+import kotlinx.css.lineHeight
+import kotlinx.css.opacity
+import kotlinx.css.properties.LineHeight
 import kotlinx.html.Entities
 import kotlinx.html.classes
 import kotlinx.html.unsafe
@@ -36,6 +40,7 @@ private val SourceCode by functionalComponent<SourceCodeProps> { props ->
             val unsafeCode = props.code
                     .replace("<", Entities.lt.text)
                     .replace(">", Entities.gt.text)
+                    .replace("/$/", "$")
                     .replace(Regex("«([a-zA-Z1-9\\-]+)«")) { "<span class=\"c-marker c-${it.groupValues[1]}\">" }
                     .replace("»", "</span>")
             attrs.unsafe { +unsafeCode }

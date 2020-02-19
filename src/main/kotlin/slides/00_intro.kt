@@ -9,15 +9,6 @@ import ws.kpres.PresentationBuilder
 import ws.kpres.SlideInfos
 
 
-private val infos = SlideInfos(
-        notes = {
-            css {
-
-            }
-            +"Hello everyone, thank you for joining me."
-        }
-)
-
 fun PresentationBuilder.intro() = slide {
     styledH1 {
         css {
@@ -32,7 +23,7 @@ fun PresentationBuilder.intro() = slide {
         }
         +"Romain Boisselle"
 
-        styledA(href = "https://twitter.com/romainbsl") {
+        styledA(href = "https://twitter.com/romainbsl", target = "_blank") {
             css {
                 fontSize = 0.6.em
                 fontWeight = FontWeight.w400

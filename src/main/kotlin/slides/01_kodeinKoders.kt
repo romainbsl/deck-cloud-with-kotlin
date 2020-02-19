@@ -1,8 +1,6 @@
 package ws.slides
 
-import kotlinx.css.Color
-import kotlinx.css.backgroundColor
-import kotlinx.css.backgroundImage
+import kotlinx.css.*
 import ws.comp.logo
 import ws.kpres.Fade
 import ws.kpres.Flip
@@ -20,6 +18,13 @@ private val infos = SlideInfos(
 )
 
 fun PresentationBuilder.kodeinKoders() = slide(infos) {
+    attrs.style = {
+        backgroundImage = Image("url('images/Kotlin_certified_training.svg')")
+        backgroundRepeat = BackgroundRepeat.noRepeat
+        backgroundPosition = "bottom 5% right 5%"
+        backgroundSize = "20%"
+    }
+
     logo(division = "Koders", href = "https://kodein.net", zoom = 1.0 ) {
         +"painless technology"
     }

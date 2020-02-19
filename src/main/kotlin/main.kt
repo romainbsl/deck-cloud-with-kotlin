@@ -10,7 +10,7 @@ import ws.kpres.presentation
 import ws.slides.*
 import ws.utils.Background
 import ws.utils.LCTPicon
-import ws.utils.Palette
+import ws.utils.titleSlide
 import kotlin.browser.document
 
 
@@ -64,6 +64,10 @@ fun main() {
             intro()
             kodeinKoders()
             kodeinFramework()
+            inversionOfControl()
+            coffeeMakerProblem()
+            coupledCode()
+            mpp()
             /**
              * let it flow
              */
