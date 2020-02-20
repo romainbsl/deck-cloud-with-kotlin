@@ -4,7 +4,6 @@ import kotlinx.css.*
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.transition
 import react.*
-import react.dom.span
 import styled.*
 import ws.kpres.*
 import ws.utils.*
@@ -103,11 +102,9 @@ private val MppArgsSlide by functionalComponent<SlideContentProps> { props ->
     }
 }
 private val MppConfigurationInfos = SlideInfos(
-        stateCount = 9,
-        inTransitions = Fade,
-        inTransitionDuration = 0
+        stateCount = 8
 )
-private val MppConigurationSlide by functionalComponent<SlideContentProps> { props ->
+private val MppConfigurationSlide by functionalComponent<SlideContentProps> { props ->
     slideTitle("KMP Configuration")
 
     bulletList(props) {
@@ -120,7 +117,6 @@ private val MppConigurationSlide by functionalComponent<SlideContentProps> { pro
         )
         bulletCode(props.state, 2, "Targets", "kotlin",
                 """
-                //...
                 kotlin {
                     jvm()             // JVM & Android
                     js { browser() }  // Browser JS
@@ -129,29 +125,42 @@ private val MppConigurationSlide by functionalComponent<SlideContentProps> { pro
                 }
                 """.trimIndent()
         )
-        bulletCode(props.state, 3, "Common dependencies", "kotlin",
+        bulletCode(props.state, 3, "Common dependencies - Main", "kotlin",
                 """
-                val commonMain by getting {
-                    dependencies {
-                        implementation(kotlin("stdlib-common"))
-                        implementation("org.kodein.di:kodein-di:7.0.0")
-                    }
-                }
-                val commonTest by getting {
-                    dependencies {
-                        implementation(kotlin("test-common"))
-                        implementation(kotlin("test-annotations-common"))
+                kotlin {
+                    val commonMain by getting {
+                        dependencies {
+                            implementation(kotlin("stdlib-common"))
+                            implementation("org.kodein.di:kodein-di:7.0.0")
+                        }
                     }
                 }
                 """.trimIndent()
         )
-        bulletCode(props.state, 4, "Platform specific dependencies", "kotlin",
+        bulletCode(props.state, 4, "Common dependencies - Test", "kotlin",
+                """
+                kotlin {
+                    //...
+                    val commonTest by getting {
+                        dependencies {
+                            implementation(kotlin("test-common"))
+                            implementation(kotlin("test-annotations-common"))
+                        }
+                    }
+                }
+                """.trimIndent()
+        )
+        bulletCode(props.state, 5, "Platform specific dependencies - Main", "kotlin",
                 """
                 val jvmMain by getting {
                     dependencies {
                         implementation(kotlin("stdlib"))
                     }
                 }
+                """.trimIndent()
+        )
+        bulletCode(props.state, 6, "Platform specific dependencies - Test", "kotlin",
+                """
                 val jvmTest by getting {
                     dependencies {
                         implementation(kotlin("test"))
@@ -162,12 +171,35 @@ private val MppConigurationSlide by functionalComponent<SlideContentProps> { pro
         )
     }
 }
+private val MppHierarchyInfos = SlideInfos(
+        stateCount = 2
+)
+private val MppHierarchySlide by functionalComponent<SlideContentProps> { props ->
+    slideTitle("KMP Hierarchy")
 
+    styledDiv {
+        css {
+            display = Display.flex
+            alignItems = Align.center
+            height = 100.pct
+        }
+
+        styledImg(src = "images/mpp_hierarchy.png") {
+            css {
+                borderRadius = 1.em
+                height = 14.em
+                transition(::opacity, 300.ms)
+                if (props.state != 1) opacity = 0
+            }
+        }
+    }
+}
 
 fun PresentationBuilder.mpp() {
     slide(WhyMppInfos) { child(WhyMppSlide, it) }
     slide(MppArgsInfos) { child(MppArgsSlide, it) }
-    slide(MppConfigurationInfos) { child(MppConigurationSlide, it) }
+    slide(MppConfigurationInfos) { child(MppConfigurationSlide, it) }
+    slide(MppHierarchyInfos) { child(MppHierarchySlide, it) }
 }
 
 
