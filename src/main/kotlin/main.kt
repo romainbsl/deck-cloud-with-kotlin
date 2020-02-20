@@ -10,6 +10,7 @@ import ws.kpres.presentation
 import ws.slides.*
 import ws.utils.Background
 import ws.utils.LCTPicon
+import ws.utils.slideTitle
 import ws.utils.titleSlide
 import kotlin.browser.document
 
@@ -60,7 +61,6 @@ fun main() {
         presentation(
                 defaultTransition = Move
         ) {
-
             intro()
             kodeinKoders()
             kodeinFramework()
@@ -70,9 +70,10 @@ fun main() {
             mpp()
             commonMain()
             consoleRun()
-            /**
-             * let it flow
-             */
+            mvp()
+            setBindings()
+            scopes()
+            slide { slideTitle("... let it flow ... ") }
             thanks()
         }
     }

@@ -44,7 +44,6 @@ private val ConsoleRunSlide by functionalComponent<SlideContentProps> { props ->
         +"c-main" { blockEffectFrom(currentState, 6) }
     }
 }
-
 private val ConsoleSlide by functionalComponent<SlideContentProps> { props ->
     styledDiv {
         css {
@@ -85,5 +84,4 @@ fun PresentationBuilder.consoleRun() {
     }
     slide { child(ConsoleSlide, it) }
     slide { child(JavaSlide, it) }
-    slide { slideTitle("Next ... ") }
 }
