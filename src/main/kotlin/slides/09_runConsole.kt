@@ -1,8 +1,6 @@
 package ws.slides
 
 import kotlinx.css.*
-import kotlinx.css.properties.BoxShadows
-import kotlinx.css.properties.boxShadow
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.transition
 import react.child
@@ -10,7 +8,6 @@ import react.functionalComponent
 import styled.css
 import styled.styledDiv
 import styled.styledImg
-import ws.kpres.Fade
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos

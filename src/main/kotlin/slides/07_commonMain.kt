@@ -4,7 +4,6 @@ import kotlinx.css.Color
 import kotlinx.css.color
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.transition
-import kotlinx.css.transition
 import react.child
 import react.functionalComponent
 import ws.kpres.Fade

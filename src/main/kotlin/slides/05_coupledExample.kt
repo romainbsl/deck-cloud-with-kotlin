@@ -1,11 +1,12 @@
 package ws.slides
 
-import kotlinx.css.*
-import kotlinx.css.properties.LineHeight
-import kotlinx.css.properties.ms
-import kotlinx.css.properties.transition
-import react.*
-import ws.kpres.*
+import kotlinx.css.Color
+import kotlinx.css.color
+import react.child
+import react.functionalComponent
+import ws.kpres.PresentationBuilder
+import ws.kpres.SlideContentProps
+import ws.kpres.SlideInfos
 import ws.utils.*
 
 private val Slide1 by functionalComponent<SlideContentProps> { props ->
@@ -150,7 +151,7 @@ fun PresentationBuilder.coupledCode() {
             inTransitionDuration = 0
     )
 
-    titleSlide("Coupled architecture")
+    slide { slideTitle("Coupled architecture") }
     slide(fastTransition(3)) { child(Slide1, it) }
     slide(fastTransition(2)) { child(Slide2, it) }
     slide(fastTransition(2)) { child(Slide3, it) }

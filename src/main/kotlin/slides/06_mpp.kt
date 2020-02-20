@@ -3,9 +3,16 @@ package ws.slides
 import kotlinx.css.*
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.transition
-import react.*
-import styled.*
-import ws.kpres.*
+import react.child
+import react.functionalComponent
+import styled.css
+import styled.styledDiv
+import styled.styledH1
+import styled.styledImg
+import ws.kpres.Fade
+import ws.kpres.PresentationBuilder
+import ws.kpres.SlideContentProps
+import ws.kpres.SlideInfos
 import ws.utils.*
 
 

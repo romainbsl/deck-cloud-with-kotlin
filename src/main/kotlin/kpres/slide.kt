@@ -4,13 +4,13 @@ import kotlinx.css.*
 import kotlinx.html.classes
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
-import react.*
-import styled.StyleSheet
+import react.RProps
+import react.functionalComponent
+import react.useEffectWithCleanup
+import react.useRef
 import styled.css
-import styled.getClassName
 import styled.styledDiv
 import ws.utils.getValue
-import kotlin.browser.document
 import kotlin.browser.window
 import kotlin.math.min
 

@@ -8,7 +8,10 @@ import org.w3c.dom.asList
 import react.*
 import react.dom.div
 import react.dom.li
-import styled.*
+import styled.css
+import styled.styledLi
+import styled.styledSpan
+import styled.styledUl
 import ws.kpres.SlideContentProps
 import ws.kpres.sourceCode
 

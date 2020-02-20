@@ -1,10 +1,6 @@
 package ws.kpres
 
-import kotlinx.css.CSSBuilder
 import kotlinx.css.RuleSet
-import kotlinx.css.lineHeight
-import kotlinx.css.opacity
-import kotlinx.css.properties.LineHeight
 import kotlinx.html.Entities
 import kotlinx.html.classes
 import kotlinx.html.unsafe

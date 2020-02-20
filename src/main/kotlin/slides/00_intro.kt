@@ -2,11 +2,8 @@ package ws.slides
 
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
-import react.dom.br
-import react.dom.h1
 import styled.*
 import ws.kpres.PresentationBuilder
-import ws.kpres.SlideInfos
 
 
 fun PresentationBuilder.intro() = slide {

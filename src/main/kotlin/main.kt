@@ -1,7 +1,7 @@
 package ws
 
 import kotlinx.css.*
-import kotlinx.css.properties.*
+import kotlinx.css.properties.LineHeight
 import react.dom.render
 import styled.StyledComponents
 import styled.injectGlobal
@@ -11,7 +11,6 @@ import ws.slides.*
 import ws.utils.Background
 import ws.utils.LCTPicon
 import ws.utils.slideTitle
-import ws.utils.titleSlide
 import kotlin.browser.document
 
 

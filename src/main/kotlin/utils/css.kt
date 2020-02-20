@@ -1,7 +1,8 @@
 package ws.utils
 
-import kotlinext.js.js
-import kotlinx.css.*
+import kotlinx.css.Color
+import kotlinx.css.Image
+import kotlinx.css.TagSelector
 
 val li get() = TagSelector("li")
 

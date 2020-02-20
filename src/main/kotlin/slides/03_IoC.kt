@@ -1,19 +1,14 @@
 package ws.slides
 
 import kotlinx.css.*
-import kotlinx.css.properties.ms
-import kotlinx.css.properties.s
-import kotlinx.css.properties.transition
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.asList
-import react.*
-import react.dom.div
-import react.dom.li
-import styled.*
+import react.RBuilder
+import react.child
+import react.functionalComponent
+import styled.css
+import styled.styledDiv
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos
-import ws.kpres.sourceCode
 import ws.utils.*
 
 

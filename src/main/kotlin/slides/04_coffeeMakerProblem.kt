@@ -1,22 +1,14 @@
 package ws.slides
 
-import kotlinx.css.*
-import kotlinx.css.properties.LineHeight
-import kotlinx.css.properties.ms
-import kotlinx.css.properties.s
-import kotlinx.css.properties.transition
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.asList
-import react.*
-import react.dom.div
-import react.dom.li
-import react.dom.title
-import styled.*
+import react.child
+import react.functionalComponent
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos
-import ws.kpres.sourceCode
-import ws.utils.*
+import ws.utils.bulletCode
+import ws.utils.bulletList
+import ws.utils.getValue
+import ws.utils.slideTitle
 
 
 private val infos = SlideInfos(

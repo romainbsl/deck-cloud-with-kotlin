@@ -2,8 +2,6 @@ package ws.slides
 
 import kotlinx.css.*
 import ws.comp.logo
-import ws.kpres.Fade
-import ws.kpres.Flip
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideInfos
 import ws.utils.Background
