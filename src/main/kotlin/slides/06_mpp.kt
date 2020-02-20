@@ -121,6 +121,7 @@ private val MppConfigurationSlide by functionalComponent<SlideContentProps> { pr
                     jvm()             // JVM & Android
                     js { browser() }  // Browser JS
                     iosX64()          // iOS simulator
+                    macosX64()        // Native host (linuxX64 / mingwX64) 
                     //...
                 }
                 """.trimIndent()

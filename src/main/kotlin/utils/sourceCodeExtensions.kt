@@ -2,18 +2,40 @@ package ws.utils
 
 import kotlinx.css.*
 import kotlinx.css.properties.LineHeight
+import kotlinx.css.properties.ms
+import kotlinx.css.properties.transition
+import react.RBuilder
+import ws.kpres.sourceCode
 
-private fun CSSBuilder.blockEffect(currentState: Int, range: IntRange) {
+fun RBuilder.kotlinSourceCode(code: String, style: RuleSet = {}) = sourceCode("kotlin", code) {
+    "code" {
+        overflow = Overflow.hidden
+    }
+    "span.c-marker" {
+        opacity = 1.0
+        transition(::opacity, 300.ms)
+        transition(::fontSize, 300.ms)
+        transition(::lineHeight, 300.ms)
+        transition(::color, 300.ms)
+        style()
+    }
+}
+
+fun CSSBuilder.blockEffect(currentState: Int, range: IntRange) {
     opacity = if (currentState !in range) 0.0 else 1.0
     lineHeight = LineHeight(if (currentState !in range) "0" else "1.2")
 }
+fun CSSBuilder.blockEffectOn(currentState: Int, state: Int) {
+    opacity = if (currentState != state) 0.0 else 1.0
+    lineHeight = LineHeight(if (currentState != state) "0" else "1.2")
+}
 
-private fun CSSBuilder.blockEffectFrom(currentState: Int, from: Int) {
+fun CSSBuilder.blockEffectFrom(currentState: Int, from: Int) {
     opacity = if (currentState < from) 0.0 else 1.0
     lineHeight = LineHeight(if (currentState < from) "0" else "1.2")
 }
 
-private fun CSSBuilder.blockEffectTo(currentState: Int, to: Int) {
+fun CSSBuilder.blockEffectTo(currentState: Int, to: Int) {
     opacity = if (currentState >= to) 0.0 else 1.0
     lineHeight = LineHeight(if (currentState >= to) "0" else "1.2")
 }

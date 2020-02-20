@@ -68,6 +68,8 @@ fun main() {
             coffeeMakerProblem()
             coupledCode()
             mpp()
+            commonMain()
+            consoleRun()
             /**
              * let it flow
              */

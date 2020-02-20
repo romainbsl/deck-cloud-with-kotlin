@@ -158,17 +158,3 @@ fun PresentationBuilder.coupledCode() {
     slide(SlideInfos(3)) { child(Slide5, it) }
     slide { child(Slide6, it) }
 }
-
-private fun RBuilder.kotlinSourceCode(code: String, style: RuleSet = {}) = sourceCode("kotlin", code) {
-    "code" {
-        overflow = Overflow.hidden
-    }
-    "span.c-marker" {
-        opacity = 1.0
-        transition(::opacity, 300.ms)
-        transition(::fontSize, 300.ms)
-        transition(::lineHeight, 300.ms)
-        transition(::color, 300.ms)
-        style()
-    }
-}
