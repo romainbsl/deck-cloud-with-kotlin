@@ -1,11 +1,10 @@
 package ws.slides
 
-import kotlinx.css.Color
-import kotlinx.css.FontWeight
-import kotlinx.css.color
-import kotlinx.css.fontWeight
+import kotlinx.css.*
+import kotlinx.css.properties.TextDecoration
 import react.child
 import react.functionalComponent
+import styled.*
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos
@@ -15,12 +14,48 @@ import ws.utils.kotlinSourceCode
 import ws.utils.slideTitle
 
 fun PresentationBuilder.thanks() {
-    slide {child(ThankYou, it)}
+    slide { child(ThankYou, it) }
     slide { slideTitle("One more thing!") }
-    slide(SlideInfos(2)) {child(OneMoreThing, it)}
+    slide(SlideInfos(2)) { child(OneMoreThing, it) }
 }
+
 private val ThankYou by functionalComponent<SlideContentProps> { props ->
-    slideTitle("Thank you!")
+    styledH1 {
+        css {
+            margin(0.5.em)
+        }
+        +"Thank You!"
+    }
+    styledH2 {
+        css {
+            fontWeight = FontWeight.w200
+            marginTop = 0.em
+        }
+        +"Romain Boisselle"
+
+        styledA(href = "https://twitter.com/romainbsl", target = "_blank") {
+            css {
+                fontSize = 0.6.em
+                fontWeight = FontWeight.w400
+                color = Color("#007bfa")
+                textDecoration = TextDecoration.none
+                display = Display.block
+                marginBottom = 0.75.em
+            }
+            +"@romainbsl"
+        }
+        styledA(href = "https://twitter.com/KodeinKoders", target = "_blank") {
+            css {
+                fontSize = 0.6.em
+                fontWeight = FontWeight.w400
+                color = Color("#007bfa")
+                textDecoration = TextDecoration.none
+                display = Display.block
+                marginBottom = 0.75.em
+            }
+            +"@KodeinKoders"
+        }
+    }
 }
 private val OneMoreThing by functionalComponent<SlideContentProps> { props ->
     slideTitle("Win an IntelliJ IDEA licence!")
@@ -40,13 +75,13 @@ private val OneMoreThing by functionalComponent<SlideContentProps> { props ->
         c) prints nothing
         «correct«d) doesn’t compile»
         """.trimIndent()) {
-        + "c-correct" {
+        +"c-correct" {
             if (props.state == 1) {
                 color = Color.green
                 fontWeight = FontWeight.w500
             }
         }
-        + "c-correct-msg" {
+        +"c-correct-msg" {
             blockEffectFrom(props.state, 1)
             if (props.state == 1) {
                 color = Color.darkRed

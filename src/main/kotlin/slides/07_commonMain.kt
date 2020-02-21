@@ -60,7 +60,6 @@ private val SimpleDISlide2 by functionalComponent<SlideContentProps> { props ->
             color = if (currentState == 1) Palette.orange.color else Color.black
         }
         +"c-provider" {
-            transition(::color, 300.ms)
             if (currentState > 1)
                 color = Palette.orange.color
         }

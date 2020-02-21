@@ -72,6 +72,7 @@ fun main() {
             mvp()
             setBindings()
             scopes()
+            whatNext()
             slide { slideTitle("... let it flow ... ") }
             thanks()
         }

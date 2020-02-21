@@ -16,7 +16,6 @@ fun RBuilder.kotlinSourceCode(code: String, style: RuleSet = {}) = sourceCode("k
         transition(::opacity, 300.ms)
         transition(::fontSize, 300.ms)
         transition(::lineHeight, 300.ms)
-        transition(::color, 300.ms)
         style()
     }
 }
@@ -55,28 +54,20 @@ fun CSSBuilder.lineEffect(currentState: Int, range: IntRange) {
     fontSize = if (currentState !in range) 0.em else 1.em
 }
 
-private fun CSSBuilder.highlight(currentState: Int, state: Int, hlColor: Color) {
-    fontSize = 1.em
-    if (currentState != state) fontSize = 0.em
-    color = hlColor
-}
-
-private fun CSSBuilder.highlightOnRange(currentState: Int, range: IntRange, hlColor: Color) {
-    fontSize = 1.em
-    if (currentState !in range) fontSize = 0.em
-    color = hlColor
-}
-
 private fun CSSBuilder.highlight(currentState: Int, state: Int, hlColor: Palette) {
     fontSize = 1.em
     if (currentState != state) fontSize = 0.em
     color = hlColor.color
 }
 
-private fun CSSBuilder.highlightOnRange(currentState: Int, range: IntRange, hlColor: Palette) {
-    fontSize = 1.em
-    if (currentState !in range) fontSize = 0.em
-    color = hlColor.color
+fun CSSBuilder.highlightOnRange(currentState: Int, range: IntRange, hlColor: Palette) {
+    color = if (currentState in range) hlColor.color else Color.black
+}
+fun CSSBuilder.highlightOn(currentState: Int, on: Int, hlColor: Color) {
+    color = if (currentState == on) hlColor else Color.black
+}
+fun CSSBuilder.highlightOn(currentState: Int, on: Int, hlColor: Palette) {
+    color = if (currentState == on) hlColor.color else Color.black
 }
 
 fun CSSBuilder.orangeHighlight(currentState: Int, state: Int) =

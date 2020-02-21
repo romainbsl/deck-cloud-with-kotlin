@@ -5,6 +5,10 @@ import ws.utils.slideTitle
 
 fun PresentationBuilder.setBindings() {
     slide {
+        slideTitle("[Advanced Mode]")
+        slideTitle("_ set bindings _")
+    }
+    slide {
         slideTitle("I can see you...")
         slideTitle("Coffee haters!")
     }

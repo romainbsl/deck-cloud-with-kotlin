@@ -93,8 +93,8 @@ fun RBuilder.bulletCode(currentState: Int, stateRef: Int, name: String, lang: St
         styledSpan {
             css {
                 specific {
-                    if (currentState < stateRef) opacity = 0.0
-                    else if (currentState in (stateRef + 1)..6) opacity = 0.25
+                    opacity = if (currentState < stateRef) 0 else  1
+//                    else if (currentState in (stateRef + 1)..6) opacity = 0.25
                     position = Position.relative
                 }
             }
