@@ -25,6 +25,7 @@ private val WhatsMVP by functionalComponent<SlideContentProps> {props ->
             css {
                 height = 12.em
                 transition(::opacity, 300.ms)
+                opacity = if (props.state == 1) 1 else 0
             }
         }
     }

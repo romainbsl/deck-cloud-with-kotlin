@@ -94,7 +94,6 @@ fun RBuilder.bulletCode(currentState: Int, stateRef: Int, name: String, lang: St
             css {
                 specific {
                     opacity = if (currentState < stateRef) 0 else  1
-//                    else if (currentState in (stateRef + 1)..6) opacity = 0.25
                     position = Position.relative
                 }
             }

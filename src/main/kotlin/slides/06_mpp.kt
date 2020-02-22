@@ -88,10 +88,13 @@ private val MppArgsSlide by functionalComponent<SlideContentProps> { props ->
             css {
                 display = Display.flex
                 flexDirection = FlexDirection.row
-                alignSelf = Align.center
+//                alignSelf = Align.center
             }
 
             styledDiv {
+                css {
+                    width = 50.pct
+                }
                 val currentState = props.state
                 bulletPoint(currentState, 1, "Args 1")
                 bulletPoint(currentState, 2, "Args 2")
@@ -99,6 +102,9 @@ private val MppArgsSlide by functionalComponent<SlideContentProps> { props ->
                 bulletPoint(currentState, 4, "Args 4")
             }
             styledDiv {
+                css {
+                    width = 50.pct
+                }
                 val currentState = props.state
                 bulletPoint(currentState, 5, "Args 5")
                 bulletPoint(currentState, 6, "Args 6")
