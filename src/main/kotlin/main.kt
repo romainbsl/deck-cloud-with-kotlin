@@ -63,7 +63,7 @@ fun main() {
             intro()
             kodeinKoders()
             kodeinFramework()
-            inversionOfControl()
+//            inversionOfControl()
             coffeeMakerProblem()
             coupledCode()
             mpp()

@@ -85,10 +85,10 @@ private val ContainerTest by functionalComponent<SlideContentProps> { props ->
 
             kotlinSourceCode("""
                 class CoffeeMakerTest«di-aware-line« : DIAware» {«di-aware-block«
-                    override val di: DI get() = underTestDI
+                    override val di: DI = underTestDI
                     »«under-test«private val underTestDI: DI = DI {
                         importAll(modularizedContainer)
-                        «exist«bind<CommonLogger>() with singleton { TestLogger() }»
+                        «exist«bind<TestLogger>() from singleton { TestLogger() }»
                     }
             
                     »@Test
@@ -118,10 +118,10 @@ private val ContainerTest by functionalComponent<SlideContentProps> { props ->
 private val OverridingBindings by functionalComponent<SlideContentProps> { props ->
     kotlinSourceCode("""
     class CoffeeMakerTest : DIAware {«config-out«
-        override val di: DI get() = underTestDI
+        override val di: DI = underTestDI
         private val underTestDI: DI = DI {
             importAll(modularizedContainer)
-            bind<CommonLogger>(«overriding«override = true») with singleton { 
+            bind(«overriding«override = true») from singleton { 
                 TestLogger() 
             }
         }
@@ -129,7 +129,7 @@ private val OverridingBindings by functionalComponent<SlideContentProps> { props
         @Test
         fun test_00_output() {
             val coffeeMaker: CoffeeMaker by instance()
-            val logger: CommonLogger by instance()«brew«
+            val logger: TestLogger by instance()«brew«
             
             coffeeMaker.brew()
     
@@ -235,7 +235,7 @@ private val Recursion by functionalComponent<SlideContentProps> { props ->
                 width = 100.pct
             }
             kotlinSourceCode("""
-// Usage
+// Use case
 class A(val logger: CommonLogger)
 class B(val a: A)
 class TestLogger(val b: B) : CommonLogger«binding«
@@ -324,7 +324,7 @@ module Thermosiphon {
 }
 
 fun PresentationBuilder.testAndDebug() {
-    slide { slideTitle("Testing your DI container") }
+    slide { slideTitle("Test and debug your DI container") }
     slide(SlideInfos(2)) { child(TestLogger, it) }
     slide(SlideInfos(5)) { child(ContainerTest, it) }
     slide(SlideInfos(3)) { child(OverridingBindings, it) }

@@ -15,7 +15,7 @@ import ws.utils.*
 private val SimpleDISlide1 by functionalComponent<SlideContentProps> { props ->
     kotlinSourceCode("""
     val simpleContainer = DI {
-        «bind-1««with«bind<CommonLogger>() with»«from«bind() from» singleton { ConsoleLogger(${compileError(1)}) }»
+        «bind-1««with«bind<CommonLogger>() with»«from«bind() from» singleton { ConsoleLogger() }»
         «bind-2««with«bind<Pump>() with»«from«bind() from» singleton { 
             Thermosiphon(${compileError(1)}) 
         }»
@@ -41,7 +41,7 @@ private val SimpleDISlide1 by functionalComponent<SlideContentProps> { props ->
 private val SimpleDISlide2 by functionalComponent<SlideContentProps> { props ->
     kotlinSourceCode("""
     val simpleContainer = DI {
-        bind() from singleton { ConsoleLogger(${compileError(1)}«instance«instance()») }
+        bind() from singleton { ConsoleLogger() }
         bind() from singleton { 
           Thermosiphon(${compileError(1)}«instance«instance()», ${compileError(1)}«instance«instance()») 
         }

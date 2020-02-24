@@ -45,7 +45,7 @@ private val SimpleMVP by functionalComponent<SlideContentProps> { props ->
         
         private val coffeeMaker: CoffeeMaker by instance()»
         
-        »«attach«fun attachView(view: Brew.View) {
+        »«attach«fun attachView(view: CMContract.View) {
             this.view = view«inject«
             coffeeMaker.brew()    
         »}
@@ -192,8 +192,6 @@ object CommonInjector {«di«
     
     fun coffeeMakerPresenter(): CoffeeMakerPresenterImpl
                 = diContainer.direct.instance()
-    fun logger(): ScreenLogger
-                = diContainer.direct.instance()
 »}»
     """.trimIndent()) {
                 val currentState = props.state
@@ -216,7 +214,7 @@ private val iOSUsage1 by functionalComponent<SlideContentProps> { props ->
     sourceCode("swift", """
         class ViewController: UIViewController«view-line«, CMContractView» {
             @IBOutlet weak var msgLabel: UILabel!«inject-1«
-            private var presenter: CMContract.Presenter!»
+            private var presenter: CMContractPresenter!»
             
             override func viewDidLoad() {
                 super.viewDidLoad()«inject-2«
@@ -250,7 +248,7 @@ private val iOSUsage2 by functionalComponent<SlideContentProps> { props ->
     sourceCode("swift", """
         class ViewController: UIViewController, CMContractView {
             «dot-out«@IBOutlet weak var msgLabel: UILabel!
-            private var presenter: CoffeeMakerPresenterImpl!
+            private var presenter: CMContractPresenter!
             »«dot-in« //...»
             override func viewDidLoad()«dot-in« { ... }»«dot-out« {
                 super.viewDidLoad()«inject-2«

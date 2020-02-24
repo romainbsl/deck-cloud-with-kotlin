@@ -220,7 +220,7 @@ fun PresentationBuilder.mpp() {
     slide(WhyMppInfos) { child(WhyMppSlide, it) }
     slide(MppArgsInfos) { child(MppArgsSlide, it) }
     slide(MppConfigurationInfos) { child(MppConfigurationSlide, it) }
-    slide(MppHierarchyInfos) { child(MppHierarchySlide, it) }
+//    slide(MppHierarchyInfos) { child(MppHierarchySlide, it) }
 }
 
 

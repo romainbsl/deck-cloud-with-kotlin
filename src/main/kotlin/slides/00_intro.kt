@@ -2,6 +2,7 @@ package ws.slides
 
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
+import react.dom.p
 import styled.*
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideInfos
@@ -9,9 +10,9 @@ import ws.kpres.notes
 
 private val IntroInfos = SlideInfos(
         notes = {
-            +"Bonjour à tous!"
-            +"Merci de vous joindre à nous pour cette soirée."
-            +"Je m'appelle Romain Boisselle, et ce soir je vais vous parler d'injection de dépendance!"
+            p { +"Bonjour à tous!" }
+            p { +"Merci de vous joindre à nous pour cette soirée." }
+            p { +"Je m'appelle Romain Boisselle, et ce soir je vais vous parler d'injection de dépendance, en Kotlin!" }
         }
 )
 fun PresentationBuilder.intro() = slide(IntroInfos) {

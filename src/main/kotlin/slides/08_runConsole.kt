@@ -57,7 +57,7 @@ private val ConsoleSlide by functionalComponent<SlideContentProps> { props ->
                 height = 10.pct
                 width = 100.pct
             }
-            +"MacOS console!"
+            +"native console"
         }
         styledDiv {
             css {
@@ -95,7 +95,7 @@ private val JavaSlide by functionalComponent<SlideContentProps> { props ->
                 height = 10.pct
                 width = 100.pct
             }
-            +"Java console!"
+            +"Java console"
         }
         styledDiv {
             css {

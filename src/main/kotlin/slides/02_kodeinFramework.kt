@@ -5,6 +5,7 @@ import kotlinx.css.properties.ms
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import react.dom.li
+import react.dom.p
 import styled.*
 import ws.comp.logo
 import ws.kpres.PresentationBuilder
@@ -49,6 +50,13 @@ private val infos = SlideInfos(
                 backgroundColor = if (it < 4) Color("#46AF6D") else Color("#EB5A44")
                 transition(::background, 1000.ms)
             }
+        },
+        notes = {
+            p { +"Mais nous sommes les créateurs et principaux contributeur au Kodein Framework." }
+            p { +"C'est un framework 100% Kotlin/Multiplatform, qui propose aujourd'hui plusieurs briques:" }
+            p { +"L'injection de dépendance, mais aussi de la persistence avec une base de données NoSQL embarquée." }
+            p { +"D'autre librairies qui sont à l'étude devrait voir le jour prochainement." }
+            p { +"Mais nous sommes aujourd'hui ici pour parler d'Injection de dépendance." }
         }
 )
 
