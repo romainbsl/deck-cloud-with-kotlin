@@ -71,9 +71,9 @@ fun main() {
             consoleRun()
             mvp()
             setBindings()
+            contexted()
             scopes()
             whatNext()
-            slide { slideTitle("... let it flow ... ") }
             thanks()
         }
     }

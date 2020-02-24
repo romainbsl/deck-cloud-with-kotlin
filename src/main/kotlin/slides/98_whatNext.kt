@@ -54,7 +54,3 @@ private fun RBuilder.bulletPoint(currentState: Int, stateRef: Int, value: String
         }
     }
 }
-val point = """
-    - iOS support
-    - MVI
-""".trimIndent()
