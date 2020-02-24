@@ -12,7 +12,7 @@ import ws.kpres.SlideInfos
 import ws.kpres.sourceCode
 import ws.utils.*
 
-private val WhatsMVP by functionalComponent<SlideContentProps> {props ->
+private val WhatsMVP by functionalComponent<SlideContentProps> { props ->
     slideTitle("What's MVP, anyway?")
     styledDiv {
         css {
@@ -154,7 +154,28 @@ private val NewBindings by functionalComponent<SlideContentProps> { props ->
     }
 }
 private val iOSBridge by functionalComponent<SlideContentProps> { props ->
-    kotlinSourceCode("""«in«@ThreadLocal
+    styledDiv {
+        css {
+            display = Display.flex
+            flexDirection = FlexDirection.column
+            alignItems = Align.center
+            height = 100.pct
+            width = 100.pct
+        }
+
+        styledSpan {
+            css {
+                height = 10.pct
+                width = 100.pct
+            }
+            +"iOS tricks: a bridge injector"
+        }
+        styledDiv {
+            css {
+                height = 80.pct
+                width = 100.pct
+            }
+            kotlinSourceCode("""«in«@ThreadLocal
 object CommonInjector {«di«
     val diContainer = DI {
         importAll(thermosiphonModule, electricHeaterModule)
@@ -164,7 +185,6 @@ object CommonInjector {«di«
                         instance(), provider())
         }
 
-        bind() from singleton { ConsoleLogger(instance()) }
         bind() from singleton { ScreenLogger(instance()) }
 
         bind() from singleton { CoffeeMakerPresenterImpl(di) }
@@ -176,15 +196,17 @@ object CommonInjector {«di«
                 = diContainer.direct.instance()
 »}»
     """.trimIndent()) {
-        val currentState = props.state
-        +"c-in" {
-            blockEffectFrom(currentState, 1)
-        }
-        +"c-di" {
-            blockEffectFrom(currentState, 2)
-        }
-        +"c-presenter" {
-            blockEffectFrom(currentState, 3)
+                val currentState = props.state
+                +"c-in" {
+                    blockEffectFrom(currentState, 1)
+                }
+                +"c-di" {
+                    blockEffectFrom(currentState, 2)
+                }
+                +"c-presenter" {
+                    blockEffectFrom(currentState, 3)
+                }
+            }
         }
     }
 }

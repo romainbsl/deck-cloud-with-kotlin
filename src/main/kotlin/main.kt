@@ -69,6 +69,7 @@ fun main() {
             mpp()
             commonMain()
             consoleRun()
+            testAndDebug()
             mvp()
             setBindings()
             contexted()

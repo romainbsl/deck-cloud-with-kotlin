@@ -1,6 +1,8 @@
 package ws.slides
 
 import kotlinx.css.*
+import kotlinx.css.properties.TextDecoration
+import kotlinx.css.properties.TextDecorationLine
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.transition
 import react.child
@@ -88,7 +90,6 @@ private val MppArgsSlide by functionalComponent<SlideContentProps> { props ->
             css {
                 display = Display.flex
                 flexDirection = FlexDirection.row
-//                alignSelf = Align.center
             }
 
             styledDiv {
@@ -96,20 +97,26 @@ private val MppArgsSlide by functionalComponent<SlideContentProps> { props ->
                     width = 50.pct
                 }
                 val currentState = props.state
-                bulletPoint(currentState, 1, "Args 1")
-                bulletPoint(currentState, 2, "Args 2")
-                bulletPoint(currentState, 3, "Args 3")
-                bulletPoint(currentState, 4, "Args 4")
+                bulletPoint(currentState, 1, " Upside ", ruleSet = stepByStepStyledBulletRule {
+                    fontWeight= FontWeight.w700
+                    textDecoration = TextDecoration(setOf(TextDecorationLine.underline))
+                })
+                bulletPoint(currentState, 2, "Shared business logic")
+                bulletPoint(currentState, 3, "Low risk")
+                bulletPoint(currentState, 4, "Already there on Android")
+                bulletPoint(currentState, 5, "Tooling++")
             }
             styledDiv {
                 css {
                     width = 50.pct
                 }
                 val currentState = props.state
-                bulletPoint(currentState, 5, "Args 5")
-                bulletPoint(currentState, 6, "Args 6")
-                bulletPoint(currentState, 7, "Args 7")
-                bulletPoint(currentState, 8, "Args 8")
+                bulletPoint(currentState, 6, " Downside ", ruleSet = stepByStepStyledBulletRule {
+                    fontWeight= FontWeight.w700
+                    textDecoration = TextDecoration(setOf(TextDecorationLine.underline))
+                })
+                bulletPoint(currentState, 7, "Gradle configuration")
+                bulletPoint(currentState, 8, "iOS team onboarding")
             }
         }
     }

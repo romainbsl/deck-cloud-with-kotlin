@@ -4,9 +4,17 @@ import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import styled.*
 import ws.kpres.PresentationBuilder
+import ws.kpres.SlideInfos
+import ws.kpres.notes
 
-
-fun PresentationBuilder.intro() = slide {
+private val IntroInfos = SlideInfos(
+        notes = {
+            +"Bonjour à tous!"
+            +"Merci de vous joindre à nous pour cette soirée."
+            +"Je m'appelle Romain Boisselle, et ce soir je vais vous parler d'injection de dépendance!"
+        }
+)
+fun PresentationBuilder.intro() = slide(IntroInfos) {
     styledH1 {
         css {
             margin(0.5.em)

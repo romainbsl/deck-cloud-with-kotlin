@@ -37,6 +37,7 @@ private val SourceCode by functionalComponent<SourceCodeProps> { props ->
                     .replace("<", Entities.lt.text)
                     .replace(">", Entities.gt.text)
                     .replace("/$/", "$")
+                    .replace("'''", "\"\"\"")
                     .replace(Regex("«([a-zA-Z1-9\\-]+)«")) { "<span class=\"c-marker c-${it.groupValues[1]}\">" }
                     .replace("»", "</span>")
             attrs.unsafe { +unsafeCode }

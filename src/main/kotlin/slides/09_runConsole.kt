@@ -8,6 +8,7 @@ import react.functionalComponent
 import styled.css
 import styled.styledDiv
 import styled.styledImg
+import styled.styledSpan
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos
@@ -45,14 +46,36 @@ private val ConsoleSlide by functionalComponent<SlideContentProps> { props ->
     styledDiv {
         css {
             display = Display.flex
+            flexDirection = FlexDirection.column
             alignItems = Align.center
             height = 100.pct
+            width = 100.pct
         }
 
-        styledImg(src = "images/console_run.svg") {
+        styledSpan {
             css {
-                height = 16.em
-                transition(::opacity, 300.ms)
+                height = 10.pct
+                width = 100.pct
+            }
+            +"MacOS console!"
+        }
+        styledDiv {
+            css {
+                height = 80.pct
+            }
+            styledDiv {
+                css {
+                    display = Display.flex
+                    alignItems = Align.center
+                    height = 100.pct
+                }
+
+                styledImg(src = "images/console_run.svg") {
+                    css {
+                        height = 16.em
+                        transition(::opacity, 300.ms)
+                    }
+                }
             }
         }
     }
@@ -61,14 +84,30 @@ private val JavaSlide by functionalComponent<SlideContentProps> { props ->
     styledDiv {
         css {
             display = Display.flex
+            flexDirection = FlexDirection.column
             alignItems = Align.center
             height = 100.pct
+            width = 100.pct
         }
 
-        styledImg(src = "images/java_run.svg") {
+        styledSpan {
             css {
-                height = 16.em
-                transition(::opacity, 300.ms)
+                height = 10.pct
+                width = 100.pct
+            }
+            +"Java console!"
+        }
+        styledDiv {
+            css {
+                display = Display.flex
+                alignItems = Align.center
+            }
+
+            styledImg(src = "images/java_run.svg") {
+                css {
+                    height = 16.em
+                    transition(::opacity, 300.ms)
+                }
             }
         }
     }

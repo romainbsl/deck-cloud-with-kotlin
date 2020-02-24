@@ -111,6 +111,12 @@ val stepByStepBulletRule: CSSBuilder.(Int, Int) -> Unit = { state, thisState ->
         if (state < thisState) opacity = 0.0
     }
 }
+fun stepByStepStyledBulletRule(textStyle: RuleSet): CSSBuilder.(Int, Int) -> Unit = { state, thisState ->
+    textStyle()
+    specific {
+        if (state < thisState) opacity = 0.0
+    }
+}
 
 fun versusBulletRule(count: Int = 1): CSSBuilder.(Int, Int) -> Unit = { state, thisState ->
     specific {

@@ -63,6 +63,9 @@ private fun CSSBuilder.highlight(currentState: Int, state: Int, hlColor: Palette
 fun CSSBuilder.highlightOnRange(currentState: Int, range: IntRange, hlColor: Palette) {
     color = if (currentState in range) hlColor.color else Color.black
 }
+fun CSSBuilder.highlightOnRange(currentState: Int, range: IntRange, hlColor: Color) {
+    color = if (currentState in range) hlColor else Color.black
+}
 fun CSSBuilder.highlightOn(currentState: Int, on: Int, hlColor: Color) {
     color = if (currentState == on) hlColor else Color.black
 }
