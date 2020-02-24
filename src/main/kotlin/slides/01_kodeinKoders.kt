@@ -13,10 +13,6 @@ private val infos = SlideInfos(
             ".inner-container" {
                 backgroundImage = Background.kodein
             }
-        },
-        notes = {
-            p { +"Avant de commencer, l'instant corporate." }
-            p { +"Je suis co-fondateur de la société Kodein Koders, nous utilisons Kotlin partout ou nous le pouvons." }
         }
 )
 

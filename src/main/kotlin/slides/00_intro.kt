@@ -8,14 +8,7 @@ import ws.kpres.PresentationBuilder
 import ws.kpres.SlideInfos
 import ws.kpres.notes
 
-private val IntroInfos = SlideInfos(
-        notes = {
-            p { +"Bonjour à tous!" }
-            p { +"Merci de vous joindre à nous pour cette soirée." }
-            p { +"Je m'appelle Romain Boisselle, et ce soir je vais vous parler d'injection de dépendance, en Kotlin!" }
-        }
-)
-fun PresentationBuilder.intro() = slide(IntroInfos) {
+fun PresentationBuilder.intro() = slide {
     styledH1 {
         css {
             margin(0.5.em)
