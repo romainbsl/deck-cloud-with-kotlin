@@ -1,6 +1,7 @@
 package ws.utils
 
 import kotlinx.css.*
+import kotlinx.css.properties.LineHeight
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.transition
 import org.w3c.dom.HTMLElement
@@ -75,10 +76,6 @@ fun RBuilder.bulletPoint(currentState: Int, stateRef: Int, value: String, level:
         css {
             margin(0.5.em)
             marginLeft = (level * 1).em
-            "span" {
-                opacity = 1.0
-                transition(::opacity, 300.ms)
-            }
         }
 
         styledSpan {
@@ -95,6 +92,7 @@ fun RBuilder.bulletCode(currentState: Int, stateRef: Int, name: String, lang: St
                 specific {
                     opacity = if (currentState < stateRef) 0 else  1
                     position = Position.relative
+                    width = 100.pct
                 }
             }
             +name
@@ -108,7 +106,18 @@ fun RBuilder.bulletCode(currentState: Int, stateRef: Int, name: String, lang: St
 
 val stepByStepBulletRule: CSSBuilder.(Int, Int) -> Unit = { state, thisState ->
     specific {
-        if (state < thisState) opacity = 0.0
+        transition(::opacity, 300.ms)
+        transition(::fontSize, 300.ms)
+        transition(::lineHeight, 300.ms)
+        if (state < thisState) {
+            opacity = 0.0
+            fontSize = 0.em
+            lineHeight = LineHeight("0")
+        } else {
+            opacity = 1.0
+            fontSize = 1.em
+            lineHeight = LineHeight("1.2")
+        }
     }
 }
 fun stepByStepStyledBulletRule(textStyle: RuleSet): CSSBuilder.(Int, Int) -> Unit = { state, thisState ->

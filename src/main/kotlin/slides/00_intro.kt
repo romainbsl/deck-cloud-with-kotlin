@@ -13,7 +13,7 @@ fun PresentationBuilder.intro() = slide {
         css {
             margin(0.5.em)
         }
-        +"Advanced multi-platform dependency injection with Kotlin!"
+        +"Modern cloud with Kotlin!"
     }
     styledH2 {
         css {
@@ -42,7 +42,7 @@ fun PresentationBuilder.intro() = slide {
             width = 28.5.em
             marginTop = 2.5.em
         }
-        +"Meetup Kotlin/Everywhere Paris"
+        +"Talking.Kt 2020"
     }
 
 }

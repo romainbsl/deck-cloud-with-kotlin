@@ -43,7 +43,7 @@ kotlin {
 }
 
 gitPublish {
-    repoUri.set("git@github.com:romainbsl/deck-advanced-di-on-mpp.git")
+    repoUri.set("git@github.com:romainbsl/deck-cloud-with-kotlin.git")
     branch.set("gh-pages")
 
     contents {

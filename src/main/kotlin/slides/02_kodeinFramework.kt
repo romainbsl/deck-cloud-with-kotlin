@@ -44,17 +44,16 @@ private fun CSSBuilder.targetsStyle(state: Int) {
 }
 
 private val infos = SlideInfos(
-        stateCount = 5,
+        stateCount = 4,
         containerStyle = {
             ".inner-container" {
-                backgroundColor = if (it < 4) Color("#46AF6D") else Color("#EB5A44")
+                backgroundColor = Color("#46AF6D")
                 transition(::background, 1000.ms)
             }
         }
 )
 
 fun PresentationBuilder.kodeinFramework() = slide(infos) { props ->
-
     logo(division = {
         styledSpan {
             css {
@@ -66,8 +65,6 @@ fun PresentationBuilder.kodeinFramework() = slide(infos) { props ->
         }
         styledSpan {
             css {
-                transition(::fontSize, 500.ms)
-                fontSize = if (props.state <= 3) 1.em else 0.em
                 verticalAlign = VerticalAlign.middle
             }
             +"Framework"
@@ -85,16 +82,6 @@ fun PresentationBuilder.kodeinFramework() = slide(infos) { props ->
             +" "
             styledSpan {
                 css {
-                    transition(::fontSize, 500.ms)
-                    fontSize = if (props.state >= 4) 1.em else 0.em
-                    verticalAlign = VerticalAlign.middle
-                }
-                +"Dependency Injection"
-            }
-            styledSpan {
-                css {
-                    transition(::fontSize, 500.ms)
-                    fontSize = if (props.state <= 3) 1.em else 0.em
                     verticalAlign = VerticalAlign.middle
                 }
                 +"multiplatform kotlin"
