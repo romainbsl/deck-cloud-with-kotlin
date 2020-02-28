@@ -7,6 +7,7 @@ import react.child
 import react.functionalComponent
 import styled.*
 import ws.comp.logo
+import ws.kpres.Flip
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos
@@ -18,7 +19,8 @@ private val infos = SlideInfos(
                 backgroundColor = Color("#EB5A44")
                 transition(::background, 1000.ms)
             }
-        }
+        },
+        outTransitions = Flip
 )
 
 private fun PresentationBuilder.whatIsKodeinDI() = slide(infos) {
@@ -54,44 +56,60 @@ private fun PresentationBuilder.whatIsKodeinDI() = slide(infos) {
 private val CustomFeature by functionalComponent<SlideContentProps> { props ->
     titledContent("Custom feature") {
         kotlinSourceCode("""
-            fun Application.diModule() {    
-                install(DIFeature) {
+            fun Application.diModule() {«feature«
+                «feature-in«di»«feature-out«install(DIFeature)» {«bind«
                     bind() from singleton { UserService() }    
                     bind() from singleton { BasicItemService() }    
-                }
-            }
-        """.trimIndent())
+                »}
+            »}
+        """.trimIndent()) {
+            +"c-feature" { blockEffectFrom(props.state, 1) }
+            +"c-bind" { blockEffectFrom(props.state, 2) }
+            +"c-feature-in" { lineEffectFrom(props.state, 3) }
+            +"c-feature-out" { lineEffectTo(props.state, 3) }
+        }
     }
 }
 private val ClosestPattern by functionalComponent<SlideContentProps> { props ->
     titledContent("Closest DI pattern") {
         kotlinSourceCode("""
-        fun Application.module() {    
-            install(DIFeature) {        
+        fun «cp-5«Application».diModule() {    
+            «cp-5«di» {        
                 bind<ItemService>() with singleton { BasicItemService() }    
-            }    
-            
-            routing {        
-                get("/todolist") {
-                    val itemService: ItemService by di().instance()
-                    // logic here        
+            }
+        }«route«
+        fun Application.routeModule() {    
+            «cp-4«routing» {
+                «cp-3«route(...)» {
+                    «cp-2«route(...)» {
+                        val itemService: ItemService by «cp-1«di()».instance()
+                    }
                 }
             }
-        }
-        """.trimIndent())
+        }» 
+        """.trimIndent()) {
+            +"c-route" { blockEffectFrom(props.state, 1) }
+            +"c-cp-1" { highlightOnRange(props.state, 2..6, Palette.orange) }
+            +"c-cp-2" {
+                highlightOnRange(props.state, 3..6, Palette.orange)
+            }
+            +"c-cp-3" { highlightOnRange(props.state, 4..6, Palette.orange) }
+            +"c-cp-4" { highlightOnRange(props.state, 5..6, Palette.orange) }
+            +"c-cp-5" { highlightOn(props.state, 6, Palette.orange) }
+        }
     }
 }
 private val KtorScopes by functionalComponent<SlideContentProps> { props ->
     titledContent("Ktor Scopes") {
         bulletList(props) {
             bulletCode(props.state, 1, "Session Scope", "kotlin",
-                """
+                    """
                 val itemService: SessionItemService 
                         by di().on(session).instance()
                 """.trimIndent()
             )
             bulletCode(props.state, 2, "Request Scope", "kotlin",
-                """
+                    """
                 val itemService: SessionItemService 
                         by di().on(applicationCall).instance()
                 """.trimIndent()
@@ -120,13 +138,37 @@ private val DIController by functionalComponent<SlideContentProps> { props ->
 
 fun PresentationBuilder.di() {
     whatIsKodeinDI()
-    slide { slideTitle("DI extensions for Ktor") }
-    slide { child(CustomFeature, it) }
-    slide { child(ClosestPattern, it) }
+    slide { slideTitle("Dependency Injection for Ktor") }
+    slide(SlideInfos(4)) { child(CustomFeature, it) }
+    slide(SlideInfos(7)) { child(ClosestPattern, it) }
     slide(SlideInfos(4)) { child(KtorScopes, it) }
     slide {
         slideTitle("Using DIController,")
         slideTitle(" a MVC-like architecture")
     }
     slide { child(DIController, it) }
+    slide {
+        styledDiv {
+            css {
+                display = Display.flex
+                flexDirection = FlexDirection.row
+                alignItems = Align.center
+                alignContent = Align.center
+                alignSelf = Align.stretch
+            }
+        }
+        styledH1 {
+            css {
+                fontWeight = FontWeight.normal
+                margin(0.em, 0.em, 0.3.em, 0.em)
+                padding(1.em)
+            }
+            +" Show us some code!"
+        }
+        styledImg(src = "images/face-with-pleading-eyes.png") {
+            css {
+                height = 5.em
+            }
+        }
+    }
 }
