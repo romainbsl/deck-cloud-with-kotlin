@@ -53,7 +53,7 @@ fun RBuilder.showCode() {
         }
         +" Show us some code!"
     }
-    styledImg(src = "images/face-with-pleading-eyes.png") {
+    styledImg(src = "images/technologist.png") {
         css {
             height = 5.em
         }

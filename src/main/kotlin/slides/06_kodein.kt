@@ -65,11 +65,11 @@ private val CustomFeature by functionalComponent<SlideContentProps> { props ->
         """.trimIndent()) {
             +"c-feature" { blockEffectFrom(props.state, 1) }
             +"c-bind" { blockEffectFrom(props.state, 2) }
-            +"c-feature-in" { lineEffectFrom(props.state, 3) }
-            +"c-feature-out" {
-                lineEffectTo(props.state, 3)
+            +"c-feature-in" {
+                lineEffectFrom(props.state, 3)
                 highlightOn(props.state, 3, Palette.orange)
             }
+            +"c-feature-out" { lineEffectTo(props.state, 3) }
         }
     }
 }

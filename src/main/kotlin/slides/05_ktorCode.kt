@@ -49,7 +49,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
             implementation("com.zaxxer:HikariCP:3.4.1")
             implementation("org.postgresql:postgresql:42.2.9")
             """.trimIndent())
-            bulletCode(currentState, 4, "Third party deps", "kotlin",
+            bulletCode(currentState, 4, "Third-party deps", "kotlin",
                     """
             // Kodein-DI v7.0.0
             implementation(kodein())
@@ -86,6 +86,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
                 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
                 val password: String
             ): Principal
+            
             data class Item(
                 val id: Int = -1,
                 val label: String,
@@ -99,6 +100,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
                 val username = varchar("username", 50)
                 val password = varchar("password", 50)
             }
+            
             object Items : IntIdTable() {
                 val label = varchar("label", 50)
                 val dueDate = date("dueDate")
@@ -113,6 +115,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
                 var username by Users.username
                 var password by Users.password
             }
+            
             class ItemEntity(id: EntityID<Int>) : IntEntity(id) {
                 companion object : IntEntityClass<ItemEntity>(Items)
                 var label by Items.label
@@ -121,8 +124,8 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
             }
             """.trimIndent())
             bulletCode(currentState, 4, "Database configuration", "kotlin",
-                    """
-            object DatabaseFactory {
+            """
+            object DatabaseConfig {
                 fun init() {
                     Database.connect(hikari())
                     transaction {

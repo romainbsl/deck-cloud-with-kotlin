@@ -15,7 +15,7 @@ import ws.utils.*
 private val Dockerize by functionalComponent<SlideContentProps> { props ->
     titledContent("Dockerize your application") {
         sourceCode("docker", """
-        «build«// BUILD
+        «build«# BUILD
         FROM adoptopenjdk/openjdk11:alpine AS «from«build»
 
         RUN mkdir -p /app
@@ -23,7 +23,7 @@ private val Dockerize by functionalComponent<SlideContentProps> { props ->
         WORKDIR /app
         RUN ./gradlew build
 
-        »«deploy«// DEPLOY
+        »«deploy«# DEPLOY
         FROM adoptopenjdk/openjdk11:alpine-jre
 
         COPY --from=«from«build /app/build/libs/ktor-todolist.jar» /app.jar
