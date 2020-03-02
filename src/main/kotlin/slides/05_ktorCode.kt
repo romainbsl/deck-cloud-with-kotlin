@@ -85,7 +85,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
                 val username: String,
                 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
                 val password: String
-            )
+            ): Principal
             data class Item(
                 val id: Int = -1,
                 val label: String,
@@ -151,18 +151,12 @@ private val BusinessServices by functionalComponent<SlideContentProps> { props -
             bulletCode(currentState, 1, "User service", "kotlin",
                     """
             class UserService {
-                suspend fun findAll(): List<User> = dbQuery {
-                    UserEntity.all().map(UserEntity::toModel)
-                }
-                
-                suspend fun findById(id: Int): User? = dbQuery { ... }
-                
                 suspend fun createOrUpdate(user: User): User? { ... }
-                
+                suspend fun check(user: User): User? = dbQuery { ... }
                 suspend fun delete(id: Int) = dbQuery { ... }
             }
             
-            internal fun UserEntity.toModel() = User(
+            internal fun UserEntity.asDTO() = User(
                 id = id.value,
                 username = username,
                 password = password
@@ -171,20 +165,14 @@ private val BusinessServices by functionalComponent<SlideContentProps> { props -
             bulletCode(currentState, 2, "Item service", "kotlin",
                     """
             class ItemService {
-                suspend fun findAll(): List<Item> = dbQuery {
-                    ItemEntity.all().map(ItemEntity::toModel)
-                }
-                
-                suspend fun findByUserId(userId: Int) = dbQuery { ... }
-                
+                suspend fun findAll(userId: Int? = null) = dbQuery { ... }
                 suspend fun createOrUpdate(item: Item): Item? { ... }
-                
                 suspend fun delete(id: Int) = dbQuery {
                     ItemEntity.findById(id)?.delete()
                 }
             }
             
-            internal fun ItemEntity.toModel() = Item( ... )
+            internal fun ItemEntity.asDTO() = Item( ... )
             """.trimIndent())
         }
     }
