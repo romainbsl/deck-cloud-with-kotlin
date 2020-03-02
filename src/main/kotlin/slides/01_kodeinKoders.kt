@@ -3,6 +3,7 @@ package ws.slides
 import kotlinx.css.*
 import react.dom.p
 import ws.comp.logo
+import ws.kpres.Flip
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideInfos
 import ws.utils.Background
@@ -13,7 +14,8 @@ private val infos = SlideInfos(
             ".inner-container" {
                 backgroundImage = Background.kodein
             }
-        }
+        },
+        outTransitions = Flip
 )
 
 fun PresentationBuilder.kodeinKoders() = slide(infos) {

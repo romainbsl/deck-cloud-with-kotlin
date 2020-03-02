@@ -74,7 +74,7 @@ fun RBuilder.bulletList(props: SlideContentProps, style: RuleSet = {}, block: RB
 fun RBuilder.bulletPoint(currentState: Int, stateRef: Int, value: String, level: Int = 1, ruleSet: CSSBuilder.(currentState: Int, stateRef: Int) -> Unit = stepByStepBulletRule) {
     styledLi {
         css {
-            margin(0.5.em)
+            marginTop = 0.3.em
             marginLeft = (level * 1).em
         }
 
@@ -92,7 +92,7 @@ fun RBuilder.bulletCode(currentState: Int, stateRef: Int, name: String, lang: St
                 specific {
                     opacity = if (currentState < stateRef) 0 else  1
                     position = Position.relative
-                    width = 100.pct
+//                    width = 100.pct
                 }
             }
             +name

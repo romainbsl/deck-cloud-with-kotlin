@@ -5,6 +5,7 @@ import kotlinx.css.properties.TextDecoration
 import react.child
 import react.functionalComponent
 import styled.*
+import ws.kpres.Flip
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideContentProps
 import ws.kpres.SlideInfos
@@ -53,5 +54,5 @@ private val ThankYou by functionalComponent<SlideContentProps> { props ->
 }
 
 fun PresentationBuilder.thanks() {
-    slide { child(ThankYou, it) }
+    slide(SlideInfos(inTransitions = Flip)) { child(ThankYou, it) }
 }

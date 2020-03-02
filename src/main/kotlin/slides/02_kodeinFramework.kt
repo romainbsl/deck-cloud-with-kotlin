@@ -8,6 +8,7 @@ import react.dom.li
 import react.dom.p
 import styled.*
 import ws.comp.logo
+import ws.kpres.Flip
 import ws.kpres.PresentationBuilder
 import ws.kpres.SlideInfos
 import ws.utils.li
@@ -50,7 +51,9 @@ private val infos = SlideInfos(
                 backgroundColor = Color("#46AF6D")
                 transition(::background, 1000.ms)
             }
-        }
+        },
+inTransitions = Flip,
+inTransitionDuration = 1000
 )
 
 fun PresentationBuilder.kodeinFramework() = slide(infos) { props ->

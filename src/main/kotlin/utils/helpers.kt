@@ -2,10 +2,8 @@ package ws.utils
 
 import kotlinx.css.*
 import react.RBuilder
-import styled.css
-import styled.styledDiv
-import styled.styledH1
-import styled.styledSpan
+import styled.*
+import styled.StyledComponents.css
 
 fun RBuilder.slideTitle(title: String) {
     styledH1 {
@@ -42,6 +40,22 @@ fun RBuilder.titledContent(title: String, body: RBuilder.() -> Unit) {
                 paddingTop = 1.em
             }
             body()
+        }
+    }
+}
+
+fun RBuilder.showCode() {
+    styledH1 {
+        css {
+            fontWeight = FontWeight.normal
+            margin(0.em, 0.em, 0.3.em, 0.em)
+            padding(1.em)
+        }
+        +" Show us some code!"
+    }
+    styledImg(src = "images/face-with-pleading-eyes.png") {
+        css {
+            height = 5.em
         }
     }
 }

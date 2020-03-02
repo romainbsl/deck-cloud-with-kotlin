@@ -108,7 +108,11 @@ private fun RBuilder.ktorBackend(body: RBuilder.() -> Unit) {
     }
 }
 private fun PresentationBuilder.ktorBackendArch(step: Int) {
-    slide(SlideInfos(inTransitions = Fade, outTransitions = Fade, inTransitionDuration = 0)) {
+    slide(SlideInfos(
+            inTransitions = Fade,
+            outTransitions = Fade,
+            inTransitionDuration = 0
+    )) {
         ktorBackend {
             styledImg(src = "images/ktor-$step.png") {
                 css {

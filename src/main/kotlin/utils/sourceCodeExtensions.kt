@@ -69,12 +69,9 @@ fun CSSBuilder.highlightOnRange(currentState: Int, range: IntRange, hlColor: Col
 fun CSSBuilder.highlightOn(currentState: Int, on: Int, hlColor: Color) {
     color = if (currentState == on) hlColor else Color.black
 }
-fun CSSBuilder.highlightOn(currentState: Int, on: Int, hlColor: Palette) {
+fun CSSBuilder.highlightOn(currentState: Int, on: Int, hlColor: Palette = Palette.orange) {
     color = if (currentState == on) hlColor.color else Color.black
 }
-
-fun CSSBuilder.orangeHighlight(currentState: Int, state: Int) =
-        highlight(currentState, state, Palette.orange)
 
 private val orangeHighLight: (String, Int, String) -> String = { prefix, i, body -> "«$prefix$i«$body»" }
 fun compileError(i: Int) = orangeHighLight("err", i, "!!!")

@@ -66,7 +66,10 @@ private val CustomFeature by functionalComponent<SlideContentProps> { props ->
             +"c-feature" { blockEffectFrom(props.state, 1) }
             +"c-bind" { blockEffectFrom(props.state, 2) }
             +"c-feature-in" { lineEffectFrom(props.state, 3) }
-            +"c-feature-out" { lineEffectTo(props.state, 3) }
+            +"c-feature-out" {
+                lineEffectTo(props.state, 3)
+                highlightOn(props.state, 3, Palette.orange)
+            }
         }
     }
 }
@@ -121,9 +124,9 @@ private val KtorScopes by functionalComponent<SlideContentProps> { props ->
 private val DIController by functionalComponent<SlideContentProps> { props ->
     titledContent("DI Aware Controller") {
         kotlinSourceCode("""
-        class MyController(application: Application) : DIController {
+        class MyController(application: Application) «aware-line«: DIController »{«aware-block«
             override val di by di { application }
-            private val repository: DataRepository by instance("dao")    
+            »«repo«private val repository: DataRepository by instance("dao")»«aware-block«    
             
             override fun Routing.installRoutes() {        
                 get("/version") {            
@@ -131,8 +134,28 @@ private val DIController by functionalComponent<SlideContentProps> { props ->
                     call.respondText(version)
                 }    
             }
+        »}«usage«
+        // Usage
+        fun Application.routeModule() {
+            routing {«controller«
+                controller { MyController(instance()) }
+                »«protected«route("/protected") {
+                    controller { MyController(instance()) }
+                }
+            »}
+        }»
+        """.trimIndent()) {
+            val currentSate = props.state
+            +"c-aware-line" {
+                lineEffectFrom(currentSate, 1)
+                highlightOn(currentSate, 1)
+            }
+            +"c-aware-block" { blockEffectFrom(currentSate, 2) }
+            +"c-repo" { blockEffectFrom(currentSate, 3) }
+            +"c-usage" { blockEffectFrom(currentSate, 4) }
+            +"c-controller" { blockEffect(currentSate, 5..5) }
+            +"c-protected" { blockEffectFrom(currentSate, 6) }
         }
-        """.trimIndent())
     }
 }
 
@@ -142,33 +165,7 @@ fun PresentationBuilder.di() {
     slide(SlideInfos(4)) { child(CustomFeature, it) }
     slide(SlideInfos(7)) { child(ClosestPattern, it) }
     slide(SlideInfos(4)) { child(KtorScopes, it) }
-    slide {
-        slideTitle("Using DIController,")
-        slideTitle(" a MVC-like architecture")
-    }
-    slide { child(DIController, it) }
-    slide {
-        styledDiv {
-            css {
-                display = Display.flex
-                flexDirection = FlexDirection.row
-                alignItems = Align.center
-                alignContent = Align.center
-                alignSelf = Align.stretch
-            }
-        }
-        styledH1 {
-            css {
-                fontWeight = FontWeight.normal
-                margin(0.em, 0.em, 0.3.em, 0.em)
-                padding(1.em)
-            }
-            +" Show us some code!"
-        }
-        styledImg(src = "images/face-with-pleading-eyes.png") {
-            css {
-                height = 5.em
-            }
-        }
-    }
+    slide { slideTitle("Isolating your endpoints logic") }
+    slide(SlideInfos(7)) { child(DIController, it) }
+    slide { showCode() }
 }
