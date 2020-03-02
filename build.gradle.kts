@@ -42,6 +42,21 @@ kotlin {
     }
 }
 
+val processResources = tasks["processResources"] as ProcessResources
+val browserWebpack = tasks["browserWebpack"] as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
+
+val copyResources = task<Sync>("copyResources") {
+    from(processResources.outputs.files)
+    from(browserWebpack.outputFile)
+
+    into("$buildDir/web")
+}
+
+tasks.getByName("build") {
+    dependsOn(copyResources)
+    dependsOn("assemble")
+}
+
 gitPublish {
     repoUri.set("git@github.com:romainbsl/deck-cloud-with-kotlin.git")
     branch.set("gh-pages")
