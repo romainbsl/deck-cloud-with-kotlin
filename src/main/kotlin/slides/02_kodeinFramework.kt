@@ -1,6 +1,7 @@
 package ws.slides
 
 import kotlinx.css.*
+import kotlinx.css.properties.LineHeight
 import kotlinx.css.properties.ms
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
@@ -16,7 +17,8 @@ import ws.utils.li
 
 private fun CSSBuilder.targetsStyle(state: Int) {
     listStyleType = ListStyleType.none
-    display = if (state in 1..3) Display.flex else Display.none
+//    display = if (state in 1..3) Display.flex else Display.none
+    display = Display.flex
     transition(::display, 500.ms)
     flexDirection = FlexDirection.row
     padding(0.em, 1.em)
@@ -35,12 +37,29 @@ private fun CSSBuilder.targetsStyle(state: Int) {
         flexGrow = 1.0
         flexBasis = FlexBasis.zero
         opacity = 0.0
-        transition(::opacity, duration = 0.3.s)
-        transition(::backgroundColor, duration = 0.3.s)
+        lineHeight = LineHeight("0")
+        transition(::lineHeight, duration = 500.ms)
+        transition(::opacity, duration = 500.ms)
+        transition(::backgroundColor, duration = 500.ms)
 
-        +"di" { if (state in 1..3) opacity = 1 }
-        +"db" { if (state in 2..3) opacity = 1 }
-        +"more" { if (state == 3) opacity = 1 }
+        +"di" {
+            if (state in 1..3) {
+                opacity = 1
+                lineHeight = LineHeight("1.2")
+            }
+        }
+        +"db" {
+            if (state in 2..3) {
+                opacity = 1
+                lineHeight = LineHeight("1.2")
+            }
+        }
+        +"more" {
+            if (state == 3) {
+                opacity = 1
+                lineHeight = LineHeight("1.2")
+            }
+        }
     }
 }
 
@@ -52,8 +71,8 @@ private val infos = SlideInfos(
                 transition(::background, 1000.ms)
             }
         },
-inTransitions = Flip,
-inTransitionDuration = 1000
+        inTransitions = Flip,
+        inTransitionDuration = 1000
 )
 
 fun PresentationBuilder.kodeinFramework() = slide(infos) { props ->

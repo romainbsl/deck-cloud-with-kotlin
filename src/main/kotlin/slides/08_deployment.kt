@@ -272,6 +272,6 @@ fun PresentationBuilder.qovery() {
     slide(QoveryInfos.copy(6)) { child(WhatIsQovery, it) }
     slide(QoveryInfos) { child(QoveryEnv, it) }
     slide(QoveryInfos.copy(4)) { child(QoveryConf, it) }
-    slide(QoveryInfos.copy(7)) { child(QoveryCLI, it) }
-    slide(QoveryInfos.copy(4, outTransitions = Flip)) { child(QoveryAPI, it) }
+    slide(QoveryInfos.copy(4)) { child(QoveryAPI, it) }
+    slide(QoveryInfos.copy(7, outTransitions = Flip)) { child(QoveryCLI, it) }
 }

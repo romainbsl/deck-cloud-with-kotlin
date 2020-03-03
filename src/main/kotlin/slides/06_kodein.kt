@@ -56,12 +56,15 @@ private fun PresentationBuilder.whatIsKodeinDI() = slide(infos) {
 private val CustomFeature by functionalComponent<SlideContentProps> { props ->
     titledContent("Custom feature") {
         kotlinSourceCode("""
-            fun Application.diModule() {«feature«
-                «feature-in«di»«feature-out«install(DIFeature)» {«bind«
-                    bind() from singleton { UserService() }    
-                    bind() from singleton { BasicItemService() }    
-                »}
+        fun Application.diModule() {«feature«
+            «feature-in«di»«feature-out«install(DIFeature)» {«bind«
+                bind() from singleton { UserService() }    
+                bind() from singleton { ItemService() }    
             »}
+        »}«usage«
+        
+        // Usage
+        val itemService: ItemService by instance()»
         """.trimIndent()) {
             +"c-feature" { blockEffectFrom(props.state, 1) }
             +"c-bind" { blockEffectFrom(props.state, 2) }
@@ -70,6 +73,7 @@ private val CustomFeature by functionalComponent<SlideContentProps> { props ->
                 highlightOn(props.state, 3, Palette.orange)
             }
             +"c-feature-out" { lineEffectTo(props.state, 3) }
+            +"c-usage" { blockEffectFrom(props.state, 4) }
         }
     }
 }
@@ -106,17 +110,30 @@ private val KtorScopes by functionalComponent<SlideContentProps> { props ->
     titledContent("Ktor Scopes") {
         bulletList(props) {
             bulletCode(props.state, 1, "Session Scope", "kotlin",
-                    """
+            """
+            // Bindings
+            bind() from scoped(SessionScope).singleton { 
+                SessionItemService() 
+            }     
+            // Retrieval
+            route(...) {
+                val session = call.sessions.get<UserSession>()
                 val itemService: SessionItemService 
                         by di().on(session).instance()
-                """.trimIndent()
-            )
+            }
+            """.trimIndent())
             bulletCode(props.state, 2, "Request Scope", "kotlin",
-                    """
-                val itemService: SessionItemService 
-                        by di().on(applicationCall).instance()
-                """.trimIndent()
-            )
+            """
+            // Bindings
+            bind() from scoped(CallScope).singleton { 
+                RequestItemService() 
+            }
+            // Retrieval
+            route(...) {
+                val itemService: RequestItemService 
+                    by di().on(applicationCall).instance()
+            }
+            """.trimIndent())
         }
     }
 }
@@ -124,13 +141,13 @@ private val KtorScopes by functionalComponent<SlideContentProps> { props ->
 private val DIController by functionalComponent<SlideContentProps> { props ->
     titledContent("DI Aware Controller") {
         kotlinSourceCode("""
-        class MyController(application: Application) «aware-line«: DIController »{«aware-block«
-            override val di by di { application }
-            »«repo«private val repository: DataRepository by instance("dao")»«aware-block«    
+        class MyController(«app-line-in«application: Application») «aware-line«: DIController »{«aware-block«
+            override val di «app-line-out«= ?»«app-line-in«by di { application }»
+            »«repo«private val repository: DataRepository by instance()»«aware-block«    
             
             override fun Routing.installRoutes() {        
                 get("/version") {            
-                    val version: String by instance("version")            
+                    val version: String by constant()            
                     call.respondText(version)
                 }    
             }
@@ -138,8 +155,8 @@ private val DIController by functionalComponent<SlideContentProps> { props ->
         // Usage
         fun Application.routeModule() {
             routing {«controller«
-                controller { MyController(instance()) }
-                »«protected«route("/protected") {
+                controller { MyController(instance()) }»
+                «protected«route("/protected") {
                     controller { MyController(instance()) }
                 }
             »}
@@ -151,10 +168,15 @@ private val DIController by functionalComponent<SlideContentProps> { props ->
                 highlightOn(currentSate, 1)
             }
             +"c-aware-block" { blockEffectFrom(currentSate, 2) }
-            +"c-repo" { blockEffectFrom(currentSate, 3) }
-            +"c-usage" { blockEffectFrom(currentSate, 4) }
-            +"c-controller" { blockEffect(currentSate, 5..5) }
-            +"c-protected" { blockEffectFrom(currentSate, 6) }
+            +"c-app-line-in" {
+                lineEffectFrom(currentSate, 3)
+                highlightOn(currentSate, 3)
+            }
+            +"c-app-line-out" { lineEffect(currentSate, 1..2) }
+            +"c-repo" { blockEffectFrom(currentSate, 4) }
+            +"c-usage" { blockEffectFrom(currentSate, 5) }
+            +"c-controller" { blockEffect(currentSate, 6..6) }
+            +"c-protected" { blockEffectFrom(currentSate, 7) }
         }
     }
 }
@@ -162,10 +184,10 @@ private val DIController by functionalComponent<SlideContentProps> { props ->
 fun PresentationBuilder.di() {
     whatIsKodeinDI()
     slide { slideTitle("Dependency Injection for Ktor") }
-    slide(SlideInfos(4)) { child(CustomFeature, it) }
+    slide(SlideInfos(5)) { child(CustomFeature, it) }
     slide(SlideInfos(7)) { child(ClosestPattern, it) }
-    slide(SlideInfos(4)) { child(KtorScopes, it) }
+    slide(SlideInfos(3)) { child(KtorScopes, it) }
     slide { slideTitle("Isolating your endpoints logic") }
-    slide(SlideInfos(7)) { child(DIController, it) }
+    slide(SlideInfos(8)) { child(DIController, it) }
     slide { showCode() }
 }

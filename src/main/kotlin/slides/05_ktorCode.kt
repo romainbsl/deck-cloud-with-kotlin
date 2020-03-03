@@ -20,7 +20,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
         bulletList(props) {
             val currentState = props.state
             bulletCode(currentState, 1, "Gradle Plugins", "kotlin",
-                    """
+            """
             plugins {
                 kotlin("jvm") version "1.3.61"
                 application
@@ -31,7 +31,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
             }
             """.trimIndent())
             bulletCode(currentState, 2, "Ktor deps", "kotlin",
-                    """
+            """
             // Ktor v1.3.0
             implementation(ktor("server-netty"))
             implementation(ktor("jackson")) 
@@ -39,7 +39,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
             implementation(ktor("html-builder"))
             """.trimIndent())
             bulletCode(currentState, 3, "Database deps", "kotlin",
-                    """
+            """
             // Exposed v0.20.2
             implementation(exposed("core"))
             implementation(exposed("dao"))
@@ -50,7 +50,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
             implementation("org.postgresql:postgresql:42.2.9")
             """.trimIndent())
             bulletCode(currentState, 4, "Third-party deps", "kotlin",
-                    """
+            """
             // Kodein-DI v7.0.0
             implementation(kodein())
             implementation(kodein("framework-ktor-server-controller-jvm"))
@@ -58,7 +58,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
             implementation("com.qovery:client:0.2.1")
             """.trimIndent())
             bulletCode(currentState, 5, "application.conf", "kotlin",
-                    """
+            """
             ktor {
                 deployment {
                     port = 8001
@@ -79,7 +79,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
         bulletList(props) {
             val currentState = props.state
             bulletCode(currentState, 1, "Domain objects", "kotlin",
-                    """
+            """
             data class User(
                 val id: Int = -1,
                 val username: String,
@@ -95,7 +95,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
             )
             """.trimIndent())
             bulletCode(currentState, 2, "Database objects", "kotlin",
-                    """
+            """
             object Users : IntIdTable() {
                 val username = varchar("username", 50)
                 val password = varchar("password", 50)
@@ -109,7 +109,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
             }
             """.trimIndent())
             bulletCode(currentState, 3, "Data access objects", "kotlin",
-                    """
+            """
             class UserEntity(id: EntityID<Int>) : IntEntity(id) {
                 companion object : IntEntityClass<UserEntity>(Users)
                 var username by Users.username
@@ -138,7 +138,7 @@ private val DataModel by functionalComponent<SlideContentProps> { props ->
             }
             """.trimIndent())
             bulletCode(currentState, 5, "Transaction helper", "kotlin",
-                    """
+            """
             suspend fun <T> dbQuery(block: () -> T): T =
                         withContext(Dispatchers.IO) {
                             transaction { block() }
@@ -152,7 +152,7 @@ private val BusinessServices by functionalComponent<SlideContentProps> { props -
         bulletList(props) {
             val currentState = props.state
             bulletCode(currentState, 1, "User service", "kotlin",
-                    """
+            """
             class UserService {
                 suspend fun createOrUpdate(user: User): User? { ... }
                 suspend fun check(user: User): User? = dbQuery { ... }
@@ -166,7 +166,7 @@ private val BusinessServices by functionalComponent<SlideContentProps> { props -
             )
             """.trimIndent())
             bulletCode(currentState, 2, "Item service", "kotlin",
-                    """
+            """
             class ItemService {
                 suspend fun findAll(userId: Int? = null) = dbQuery { ... }
                 suspend fun createOrUpdate(item: Item): Item? { ... }
