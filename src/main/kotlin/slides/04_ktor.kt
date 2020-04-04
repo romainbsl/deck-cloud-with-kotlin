@@ -21,13 +21,14 @@ private val WhatIsKtor by functionalComponent<SlideContentProps> { props ->
         }) {
             val currentState = props.state
             bulletPoint(currentState, 1, "Server Engine")
-            bulletPoint(currentState, 2, "HTTP APIs", level = 2)
-            bulletPoint(currentState, 3, "REST Systems", level = 2)
+            bulletPoint(currentState, 2, "REST Systems", level = 2)
+            bulletPoint(currentState, 3, "HTTP APIs", level = 2)
             bulletPoint(currentState, 4, "(Web)sockets", level = 2)
-            bulletPoint(currentState, 5, "HTTP client")
-            bulletPoint(currentState, 6, "Asynchronous", level = 2)
-            bulletPoint(currentState, 7, "Multi-platform", level = 2)
-            bulletPoint(currentState, 8, "DSL based")
+            bulletPoint(currentState, 5, "Asynchronous", level = 2)
+            bulletPoint(currentState, 6, "HTTP client")
+            bulletPoint(currentState, 7, "Asynchronous", level = 2)
+            bulletPoint(currentState, 8, "Multi-platform", level = 2)
+            bulletPoint(currentState, 9, "DSL based")
         }
     }
 }
@@ -292,7 +293,8 @@ private fun PresentationBuilder.ktorBackendArch(step: Int) {
 }
 
 fun PresentationBuilder.ktor() {
-    slide(SlideInfos(9)) { child(WhatIsKtor, it) }
+    slide { slideTitle("What is Ktor?") }
+//    slide(SlideInfos(10)) { child(WhatIsKtor, it) }
 //    slide(SlideInfos(6)) { child(WhatIsKtorFor, it) }
     slide(SlideInfos(6)) { child(KtorExample, it) }
     for (i in 1..14) {

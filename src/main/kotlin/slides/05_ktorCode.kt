@@ -22,7 +22,7 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
             bulletCode(currentState, 1, "Gradle Plugins", "kotlin",
             """
             plugins {
-                kotlin("jvm") version "1.3.61"
+                kotlin("jvm") version "1.3.70"
                 application
             }
             
@@ -30,35 +30,8 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
                 mainClassName = "io.ktor.server.netty.EngineMain"
             }
             """.trimIndent())
-            bulletCode(currentState, 2, "Ktor deps", "kotlin",
-            """
-            // Ktor v1.3.0
-            implementation(ktor("server-netty"))
-            implementation(ktor("jackson")) 
-            implementation(ktor("auth"))
-            implementation(ktor("html-builder"))
-            """.trimIndent())
-            bulletCode(currentState, 3, "Database deps", "kotlin",
-            """
-            // Exposed v0.20.2
-            implementation(exposed("core"))
-            implementation(exposed("dao"))
-            implementation(exposed("jdbc"))
-            implementation(exposed("java-time"))
-            // Database HikariCP + PostgreSQL
-            implementation("com.zaxxer:HikariCP:3.4.1")
-            implementation("org.postgresql:postgresql:42.2.9")
-            """.trimIndent())
-            bulletCode(currentState, 4, "Third-party deps", "kotlin",
-            """
-            // Kodein-DI v7.0.0
-            implementation(kodein())
-            implementation(kodein("framework-ktor-server-controller-jvm"))
-            // Qovery client v0.2.1
-            implementation("com.qovery:client:0.2.1")
-            """.trimIndent())
-            bulletCode(currentState, 5, "application.conf", "kotlin",
-            """
+            bulletCode(currentState, 2, "application.conf", "kotlin",
+                    """
             ktor {
                 deployment {
                     port = 8001
@@ -70,6 +43,33 @@ private val FrameworkAndDependencies by functionalComponent<SlideContentProps> {
                      ]
                 }
             }
+            """.trimIndent())
+            bulletCode(currentState, 3, "Ktor deps", "kotlin",
+            """
+            // Ktor v1.3.0
+            implementation(ktor("server-netty"))
+            implementation(ktor("jackson")) 
+            implementation(ktor("auth"))
+            implementation(ktor("html-builder"))
+            """.trimIndent())
+            bulletCode(currentState, 4, "Database deps", "kotlin",
+            """
+            // Exposed v0.20.2
+            implementation(exposed("core"))
+            implementation(exposed("dao"))
+            implementation(exposed("jdbc"))
+            implementation(exposed("java-time"))
+            // Database HikariCP + PostgreSQL
+            implementation("com.zaxxer:HikariCP:3.4.1")
+            implementation("org.postgresql:postgresql:42.2.9")
+            """.trimIndent())
+            bulletCode(currentState, 5, "Third-party deps", "kotlin",
+            """
+            // Kodein-DI v7.0.0
+            implementation(kodein())
+            implementation(kodein("framework-ktor-server-controller-jvm"))
+            // Qovery client v0.2.1
+            implementation("com.qovery:client:0.2.1")
             """.trimIndent())
         }
     }
